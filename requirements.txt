@@ -1,0 +1,11 @@
+pandas
+scikit-learn
+psycopg2-binary
+pandas_datareader
+tensorflow
+matplotlib
+yfinance
+mpld3
+apache-airflow==2.9.2
+tqdm
+numpy

@@ -1,0 +1,8 @@
+flask
+redis
+numpy
+fastapi
+uvicorn
+pandas
+tensorflow
+scikit-learn

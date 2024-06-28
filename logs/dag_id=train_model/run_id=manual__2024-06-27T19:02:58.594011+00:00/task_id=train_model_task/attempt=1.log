@@ -1,0 +1,47 @@
+[2024-06-27T19:03:02.752+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-27T19:03:02.777+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: train_model.train_model_task manual__2024-06-27T19:02:58.594011+00:00 [queued]>
+[2024-06-27T19:03:02.787+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: train_model.train_model_task manual__2024-06-27T19:02:58.594011+00:00 [queued]>
+[2024-06-27T19:03:02.787+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-27T19:03:02.802+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): train_model_task> on 2024-06-27 19:02:58.594011+00:00
+[2024-06-27T19:03:02.819+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=44) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-27T19:03:02.820+0000] {standard_task_runner.py:63} INFO - Started process 49 to run task
+[2024-06-27T19:03:02.821+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'train_model', 'train_model_task', 'manual__2024-06-27T19:02:58.594011+00:00', '--job-id', '829', '--raw', '--subdir', 'DAGS_FOLDER/train_model.py', '--cfg-path', '/tmp/tmp59v_626j']
+[2024-06-27T19:03:02.824+0000] {standard_task_runner.py:91} INFO - Job 829: Subtask train_model_task
+[2024-06-27T19:03:02.836+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/settings.py:195: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2024-06-27T19:03:02.873+0000] {task_command.py:426} INFO - Running <TaskInstance: train_model.train_model_task manual__2024-06-27T19:02:58.594011+00:00 [running]> on host 5daea60ed64a
+[2024-06-27T19:03:02.949+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='train_model' AIRFLOW_CTX_TASK_ID='train_model_task' AIRFLOW_CTX_EXECUTION_DATE='2024-06-27T19:02:58.594011+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-27T19:02:58.594011+00:00'
+[2024-06-27T19:03:02.950+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-27T19:03:03.089+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/keras/src/layers/rnn/rnn.py:204: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(**kwargs)
+
+[2024-06-27T19:03:03.152+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-27T19:03:03.153+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/train_model.py", line 53, in train
+    X = np.array(X)
+        ^^
+NameError: name 'np' is not defined
+[2024-06-27T19:03:03.171+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=train_model, task_id=train_model_task, run_id=manual__2024-06-27T19:02:58.594011+00:00, execution_date=20240627T190258, start_date=20240627T190302, end_date=20240627T190303
+[2024-06-27T19:03:03.190+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 829 for task train_model_task (name 'np' is not defined; 49)
+[2024-06-27T19:03:03.240+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-27T19:03:03.256+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-27T19:03:03.262+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

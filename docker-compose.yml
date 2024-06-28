@@ -106,5 +106,14 @@ services:
       - ../models:/opt/airflow/models
     command: uvicorn app:app --host 0.0.0.0 --port 5001
 
+  streamlit:
+    build:
+      context: ./streamlit
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+
 volumes:
   postgres-db-volume:

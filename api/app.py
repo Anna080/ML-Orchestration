@@ -19,8 +19,8 @@ timestamp = 10
 dropout_rate = 0.8
 learning_rate = 0.01
 
-model_path = '/opt/airflow/models/stock_model.keras'
-data_path = '/opt/airflow/data/data_normalized.csv'
+model_path = '/appli/models/stock_model.keras'
+data_path = '/appli/data/data_normalized.csv'
 
 def create_model(input_shape, output_size, learning_rate):
     model = tf.keras.Sequential()
@@ -61,7 +61,7 @@ def get_predictions():
 
     if predictions:
         # Mettre en cache les prédictions
-        cache.set('predictions', np.array(predictions))
+        cache.set('predictions', np.array(predictions).tobytes())
 
     return {"predicted_close": predictions}
 

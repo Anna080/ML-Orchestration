@@ -15,13 +15,18 @@ RUN apt-get update && apt-get install -y \
 # Upgrade pip
 RUN pip install --upgrade pip
 
-# Copy the requirements file and install dependencies
-COPY requirements.txt requirements.txt
+# Définir le répertoire de travail
+WORKDIR /appli
+
+# Copier les fichiers nécessaires dans le conteneur
+COPY requirements.txt .
+COPY app.py .
+
+# Installer les dépendances
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the data and models directories
-COPY ../data /opt/airflow/data
-COPY ../models /opt/airflow/models
+# Exposer le port utilisé par l'application FastAPI
+EXPOSE 5001
 
-# Copy the rest of the application files
-COPY . .
+# Commande pour lancer l'application FastAPI
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5001"]

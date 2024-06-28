@@ -23,6 +23,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier les DAGs
 COPY ./dags /opt/airflow/dags
-
-# Exposer le port pour Flask
-EXPOSE 5001
